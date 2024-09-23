@@ -1,0 +1,17 @@
+version: '3.8'  # Puedes usar otra versión compatible
+
+services:
+  mariadb:
+    image: mariadb:latest  # Usa la última imagen de MariaDB
+    container_name: mariadb_container  # Nombre del contenedor
+    environment:
+      MYSQL_ROOT_PASSWORD: root_password  # Contraseña del usuario root
+      MYSQL_DATABASE: nombre_base_datos   # Nombre de la base de datos inicial
+      MYSQL_USER: usuario                 # Nombre del usuario
+      MYSQL_PASSWORD: password_usuario    # Contraseña del usuario
+    volumes:
+      - ./:/docker-entrypoint-initdb.d
+    
+    ports:
+      - "3306:3306"  # Mapea el puerto 3306 del host al contenedor
+    restart: always  # Reinicia automáticamente en caso de error o reinicio

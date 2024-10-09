@@ -1,10 +1,12 @@
 -- Crear tabla payments
 CREATE TABLE payments (
   id INT PRIMARY KEY AUTO_INCREMENT,
-  payment_type VARCHAR(255),
-  value VARCHAR(255),
-  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-  association VARCHAR(255)
+  paymentId VARCHAR(255),
+  movimiento VARCHAR(255),
+  fecha VARCHAR(255),
+  monto VARCHAR(255),
+  nombre VARCHAR(255),
+  cuenta VARCHAR(255)
 );
 
 -- Crear tabla users (entre comillas invertidas para evitar conflictos)
@@ -27,3 +29,8 @@ CREATE TABLE roles (
 -- Añadir la clave foránea a la tabla users
 ALTER TABLE `users` 
 ADD CONSTRAINT fk_role FOREIGN KEY (role_fk) REFERENCES roles(id) ON DELETE SET NULL ON UPDATE CASCADE;
+
+INSERT INTO nombre_base_datos.roles (role_name,description) VALUES
+	 ('domiciliario',NULL),
+	 ('cajero',NULL),
+	 ('supervisor',NULL);

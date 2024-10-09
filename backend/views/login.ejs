@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title> Inicio de seción </title>
+</head>
+
+<body>
+    <div><%- include("holamundo.ejs")%></div>
+        <form id="login">
+            <h2>Ingrese sus credenciales</h2>
+            <label for="email">Email</label>
+            <input type="text" id="id_email" name="user_email" required>
+            <label for="password">password</label>
+            <input type="password" id="id_pass" name="password" required>
+            <button type="submit">Inicio de secion</button>
+            <p id="alerts"></p> 
+            <span>&nbsp;</span>
+        </form>
+    </div>
+
+    <script>
+        const $ = el => document.querySelector(el)
+        
+        const loginForm = $("#login")
+        loginForm?.addEventListener("submit", async e => {
+            e.preventDefault()
+            const aler = document.getElementById("alerts")
+            const email = $("#id_email").value
+            const pass = $("#id_pass").value
+            try {
+                let respone = await fetch("/login",
+                    {
+                        mode: "same-origin",
+                        method: "POST",
+                        headers: {"Content-Type": "application/json"},
+                        body: JSON.stringify({ pass, email })
+                    }
+                )
+                if (respone.status == 202) {
+                    console.log("ir a la tabla")
+                }else{
+                    console.log("Error al iniciar secion")
+                    aler.innerHTML = "<p>Error al iniciar secion</p>"    
+                }
+            } catch {
+                console.log("Error al iniciar secion")
+                aler.innerHTML = "<p>Error al iniciar secion</p>"
+            }
+        }
+    )
+    </script>
+</body>
+
+</html>

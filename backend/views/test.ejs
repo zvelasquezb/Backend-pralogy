@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title> Inicio de seción </title>
+</head>
+
+<body>
+    <h1>
+        <% if (prueba) { %>
+            hola <%= name %>
+        <% } %>
+    </h1>
+    <div>
+        <div><%- include("holamundo.ejs") %></div>
+        <form id="login">
+            <h2>titulo del frorm</h2>
+            <label for="email">Email</label>
+            <input type="text" id="id_email" name="user_email" required>
+            <label for="password">password</label>
+            <input type="password" id="id_pass" name="password" required>
+            <button type="submit">Inicio de secion</button>
+            <span>&nbsp;</span>
+        </form>
+    </div>
+    <h1>hola2</h1>
+
+    <script>
+        const $ = el => document.querySelector(el);
+        const loginForm = $("#login");
+
+        loginForm.addEventListener("submit", async (e) => {
+            e.preventDefault();
+            const email = $("#id_email").value;
+            const passw = $("#id_pass").value;
+
+            try {
+                const response = await fetch("/login", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({ email, passw })
+                });
+
+                if (response.ok) {
+                    // Handle successful login
+                    console.log("Login successful");
+                    setTimeout(()=>{
+                        window.location.href="tabla"
+                    })
+                } else {
+                    // Handle login error
+                    console.log({ email, passw })
+                    console.error("Login failed");
+                }
+            } catch (error) {
+                console.error("Error:", error);
+            }
+        });
+    </script>
+</body>
+</html>

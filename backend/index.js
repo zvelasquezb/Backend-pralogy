@@ -6,13 +6,12 @@ import { getCompras } from "./compras/getCompras.js"
 import cookieParser from "cookie-parser"
 import { insertData } from "./data/insertData.js"
 import jwt from "jsonwebtoken"
-import cors from "cors"
+
 
 let currentUser = null
 
 const app = express()
-//app.use(cors())
-//app.options("*",cors())
+
 app.use(cookieParser())
 
 app.use(express.json())
@@ -70,6 +69,7 @@ app.get("/", (req, res) => {
 app.post("/createtoken", async (req, res) => {
     let loginResoult = login.loginDeliver()
     const token = loginResoult[3]
+    console.log(`${PORT}/deliver?token=${token}`,)
     res.status(202).cookie("token", token, { httpOnly: true, sameSite: "strict", maxAge: 60 * 60 * 1000 }).send("inicio de secion exitoso")
 })
 

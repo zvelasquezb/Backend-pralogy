@@ -14,7 +14,7 @@ export class login {
     }
     static loginDeliver() {
         const token = jwt.sign({ id: "deliver", usrEmail: "deliver" }, "0e99de91e8146855ecc0ac82ec42fbab0bb2d9cd8e6060794d74c73cec8f4193", { expiresIn: "1h" })
-        console.log(token)
+        //console.log(token)
         return([1,"token delivery","deliver",token])
     }
 }

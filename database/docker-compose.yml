@@ -6,9 +6,11 @@ services:
     container_name: mariadb_container  # Nombre del contenedor
     environment:
       MYSQL_ROOT_PASSWORD: root_password  # Contraseña del usuario root
-      MYSQL_DATABASE: nombre_base_datos   # Nombre de la base de datos inicial
-      MYSQL_USER: usuario                 # Nombre del usuario
-      MYSQL_PASSWORD: password_usuario    # Contraseña del usuario
+      MYSQL_DATABASE: DB1   # Nombre de la base de datos inicial
+      MYSQL_USER: backendND                 # Nombre del usuario
+      MYSQL_PASSWORD: Esp4nt0Esp4nt0*    # Contraseña del usuario
+      MYSQL_ROOT_HOST: '172.18.0.1'
+    
     volumes:
       - ./:/docker-entrypoint-initdb.d
     

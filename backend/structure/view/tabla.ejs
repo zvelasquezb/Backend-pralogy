@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body{
+            background: linear-gradient(188deg, #ffffff 100%  );
+
+        }
+        #table1 {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+        th {
+            border: 3px solid black;
+            text-align: left;
+            padding: 8px;
+        }
+        td {
+            border: 3px solid black;
+            text-align: left;
+            padding: 8px;
+        }
+        #tdin {
+            background-color: yellowgreen;
+            border: 3px solid black;
+            text-align: left;
+            padding: 8px;
+        }
+        #tdout {
+            background-color: tomato;
+            border: 3px solid black;
+            text-align: left;
+            padding: 8px;
+        }
+    </style>
+</head>
+<body>
+<h1 id="title1">Transacciones</h1>
+<% if(true){%>
+<table id="table1">
+<% for(let row=0;row<data.length; row++){%>
+    <tr></tr>
+    <% for(let item=0; item<data[row].length; item++){%>
+
+        <%if(row==0){%>
+            <th><%=data[row][item]%></th>
+        <% }else if(data[row][2]=="cash out"){ %>
+            <td id="tdout" hidden><%=data[row][item]%></td>
+        <% }else if(data[row][2]=="cash in"){ %>
+            <td id="tdin"><%=data[row][item]%></td>
+        <% }else{ %>
+            <td><%=data[row][item]%></td>
+        <% } %>
+    <% } %>
+</tr>
+    <% } %>
+</table>
+<% } %>
+</body>
+</html>
